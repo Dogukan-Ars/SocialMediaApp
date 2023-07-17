@@ -15,7 +15,6 @@ import { register } from "./controllers/auth.js"
 import { createPost } from "./controllers/posts.js"
 import { verifyToken } from "./middleware/auth.js"
 
-
 /* CONFIGURATIONS */
 
 const __filename = fileURLToPath(import.meta.url)
@@ -42,8 +41,10 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage })
 
-/* ROUTES WITH FILES */ 
+/* ROUTES WITH FILES */
+// Authentication: It is basically register and login process
 app.post("/auth/register", upload.single("picture", register))
+// Authorization: When you wanna make sure someones logged in, so you can perform some action like post, like or comment...
 app.post("/posts", verifyToken, upload.single("picture"), createPost)
 
 /* ROUTES */ 

@@ -2,15 +2,14 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import User from "../models/User.js"
 import Post from '../models/Post.js'
-import { users } from "./usersData.js"
-import posts from "./postsData.js"
+import { users, posts } from "./datas.js"
 
-// Load environment variables
-dotenv.config({ path: `${__dirname}/../.env` })
+// Lkoad environment variables
+dotenv.config()
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 6001;
-mongoose.connect(process.env.MONGO_URL, {
+await mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {
